@@ -33,8 +33,4 @@ lab2-concurrency-async/
 └── run_all_lab2.py
 ```
 
-```powershell
-python .\run_all_lab2.py
-```
-
 
