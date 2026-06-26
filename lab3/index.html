@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Дмитрий Люсин">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Лабораторная работа 3 - Отчёт по лабораторным работам по веб-разработке</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="..">Отчёт по лабораторным работам по веб-разработке</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../lab1/" class="nav-link">Лабораторная работа 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../lab2/" class="nav-link">Лабораторная работа 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Лабораторная работа 3</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../run/" class="nav-link">Инструкция запуска</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../check/" class="nav-link">Проверка и защита</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../lab2/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../run/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/USERNAME/REPOSITORY/edit/master/docs/lab3.md" class="nav-link">Edit on GitHub Repository
+                                    </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#3-docker" class="nav-link">Лабораторная работа 3. Docker, источники данных и очереди</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">Цель работы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">Общая идея</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Архитектура</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">Важное архитектурное решение</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_5" class="nav-link">Использованные технологии</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_6" class="nav-link">Структура проекта</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#docker-compose" class="nav-link">Сервисы Docker Compose</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#1-docker" class="nav-link">Подзадача 1. Упаковка в Docker</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-fastapi-http" class="nav-link">Подзадача 2. Вызов парсера из FastAPI по HTTP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3" class="nav-link">Подзадача 3. Вызов парсера через очередь</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_7" class="nav-link">Проверка работы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_8" class="nav-link">Вывод</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="3-docker">Лабораторная работа 3. Docker, источники данных и очереди<a class="headerlink" href="#3-docker" title="Permanent link">&para;</a></h1>
+<h2 id="_1">Цель работы<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Цель лабораторной работы — упаковать FastAPI-приложение в Docker, интегрировать парсер данных с базой данных, реализовать вызов парсера через HTTP и через очередь задач.</p>
+<h2 id="_2">Общая идея<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>В третьей лабораторной работе были объединены результаты первых двух лабораторных работ:</p>
+<ul>
+<li>из ЛР1 используется FastAPI-приложение тайм-менеджера и PostgreSQL-база;</li>
+<li>из ЛР2 используется парсер веб-страниц;</li>
+<li>дополнительно добавлены Docker, отдельный сервис парсера, Redis и Celery worker.</li>
+</ul>
+<h2 id="_3">Архитектура<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<pre><code class="language-text">Пользователь
+    |
+    v
+Основное FastAPI-приложение
+    |                         | HTTP                 \ очередь задач
+    v                      v
+Parser Service           Redis
+    |                      |
+    |                      v
+    |                  Celery Worker
+    |                      |
+    v                      v
+        Общая PostgreSQL база данных
+</code></pre>
+<h2 id="_4">Важное архитектурное решение<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>В проекте используется <strong>одна общая PostgreSQL-база данных</strong>. Отдельная база для каждого микросервиса не создавалась.</p>
+<p>К одной базе подключаются:</p>
+<ul>
+<li>основное FastAPI-приложение;</li>
+<li>сервис парсера;</li>
+<li>Celery worker.</li>
+</ul>
+<p>Это соответствует требованию не разворачивать отдельную базу данных для каждого микросервиса.</p>
+<h2 id="_5">Использованные технологии<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Технология</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker</td>
+<td>упаковка приложений в контейнеры</td>
+</tr>
+<tr>
+<td>Docker Compose</td>
+<td>запуск нескольких сервисов одной командой</td>
+</tr>
+<tr>
+<td>FastAPI</td>
+<td>основное API и API сервиса парсера</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>общая база данных</td>
+</tr>
+<tr>
+<td>Redis</td>
+<td>брокер сообщений для очереди задач</td>
+</tr>
+<tr>
+<td>Celery</td>
+<td>фоновая обработка задач парсинга</td>
+</tr>
+<tr>
+<td>requests</td>
+<td>HTTP-запросы между сервисами и загрузка страниц</td>
+</tr>
+<tr>
+<td>BeautifulSoup</td>
+<td>извлечение заголовка HTML-страницы</td>
+</tr>
+<tr>
+<td>Alembic</td>
+<td>применение миграций базы данных</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">Структура проекта<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<pre><code class="language-text">lab3-docker-queue/
+├── app/
+│   ├── main.py
+│   ├── routers/
+│   │   ├── auth.py
+│   │   ├── users.py
+│   │   ├── categories.py
+│   │   ├── tags.py
+│   │   ├── tasks.py
+│   │   ├── time_entries.py
+│   │   └── parser.py
+│   └── ...
+├── parser_service/
+│   └── main.py
+├── shared/
+│   ├── config.py
+│   ├── db.py
+│   ├── parser.py
+│   └── schemas.py
+├── worker/
+│   ├── celery_app.py
+│   └── tasks.py
+├── migrations/
+├── Dockerfile.app
+├── Dockerfile.parser
+├── Dockerfile.worker
+├── docker-compose.yml
+└── requirements.txt
+</code></pre>
+<h2 id="docker-compose">Сервисы Docker Compose<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h2>
+<p>В <code>docker-compose.yml</code> описаны следующие сервисы:</p>
+<table>
+<thead>
+<tr>
+<th>Сервис</th>
+<th>Назначение</th>
+<th>Порт</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app</code></td>
+<td>основное FastAPI-приложение</td>
+<td><code>8000:8000</code></td>
+</tr>
+<tr>
+<td><code>parser_service</code></td>
+<td>отдельный сервис парсера</td>
+<td><code>8001:8001</code></td>
+</tr>
+<tr>
+<td><code>db</code></td>
+<td>PostgreSQL</td>
+<td><code>5433:5432</code></td>
+</tr>
+<tr>
+<td><code>redis</code></td>
+<td>очередь задач</td>
+<td><code>6380:6379</code></td>
+</tr>
+<tr>
+<td><code>celery_worker</code></td>
+<td>обработчик фоновых задач</td>
+<td>без внешнего порта</td>
+</tr>
+</tbody>
+</table>
+<p>Снаружи PostgreSQL доступен на порту <code>5433</code>, чтобы не конфликтовать с локальным PostgreSQL или контейнером из первой лабораторной работы.</p>
+<h2 id="1-docker">Подзадача 1. Упаковка в Docker<a class="headerlink" href="#1-docker" title="Permanent link">&para;</a></h2>
+<p>Были созданы Dockerfile для:</p>
+<ul>
+<li>основного FastAPI-приложения;</li>
+<li>сервиса парсера;</li>
+<li>Celery worker.</li>
+</ul>
+<p>Также был создан общий <code>docker-compose.yml</code>, который запускает все необходимые сервисы одной командой:</p>
+<pre><code class="language-powershell">docker compose up --build
+</code></pre>
+<p>При запуске основного приложения автоматически выполняются миграции Alembic.</p>
+<h2 id="2-fastapi-http">Подзадача 2. Вызов парсера из FastAPI по HTTP<a class="headerlink" href="#2-fastapi-http" title="Permanent link">&para;</a></h2>
+<p>В основное FastAPI-приложение был добавлен эндпоинт:</p>
+<pre><code class="language-text">POST /parser/parse
+</code></pre>
+<p>Он принимает URL, отправляет HTTP-запрос в контейнер <code>parser_service</code>, получает результат парсинга и возвращает его пользователю.</p>
+<p>Пример запроса:</p>
+<pre><code class="language-json">{
+  &quot;url&quot;: &quot;https://example.com/&quot;
+}
+</code></pre>
+<p>Пример ответа:</p>
+<pre><code class="language-json">{
+  &quot;url&quot;: &quot;https://example.com/&quot;,
+  &quot;title&quot;: &quot;Example Domain&quot;,
+  &quot;saved_id&quot;: 1,
+  &quot;saved_to&quot;: &quot;tag&quot;
+}
+</code></pre>
+<h2 id="3">Подзадача 3. Вызов парсера через очередь<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>Для выполнения парсинга в фоне были добавлены Redis и Celery.</p>
+<p>Основное приложение добавляет задачу в очередь через эндпоинт:</p>
+<pre><code class="language-text">POST /parser/parse-async
+</code></pre>
+<p>Пример ответа:</p>
+<pre><code class="language-json">{
+  &quot;message&quot;: &quot;Parsing task started&quot;,
+  &quot;task_id&quot;: &quot;...&quot;,
+  &quot;status_url&quot;: &quot;/parser/tasks/...&quot;
+}
+</code></pre>
+<p>Celery worker забирает задачу из Redis, выполняет парсинг и сохраняет результат в общую PostgreSQL-базу.</p>
+<p>Для проверки статуса задачи добавлен эндпоинт:</p>
+<pre><code class="language-text">GET /parser/tasks/{task_id}
+</code></pre>
+<p>Пример успешного результата:</p>
+<pre><code class="language-json">{
+  &quot;task_id&quot;: &quot;...&quot;,
+  &quot;status&quot;: &quot;SUCCESS&quot;,
+  &quot;result&quot;: {
+    &quot;url&quot;: &quot;https://example.com/&quot;,
+    &quot;title&quot;: &quot;Example Domain&quot;,
+    &quot;saved_id&quot;: 2,
+    &quot;saved_to&quot;: &quot;tag&quot;
+  }
+}
+</code></pre>
+<h2 id="_7">Проверка работы<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>После запуска проекта доступны:</p>
+<pre><code class="language-text">http://127.0.0.1:8000/docs  — основное FastAPI-приложение
+http://127.0.0.1:8001/docs  — сервис парсера
+</code></pre>
+<p>Проверка прямого вызова:</p>
+<ol>
+<li>Открыть <code>http://127.0.0.1:8000/docs</code>.</li>
+<li>Выполнить <code>POST /parser/parse</code>.</li>
+<li>Указать URL <code>https://example.com/</code>.</li>
+<li>Проверить, что вернулся заголовок страницы и <code>saved_id</code>.</li>
+</ol>
+<p>Проверка очереди:</p>
+<ol>
+<li>Выполнить <code>POST /parser/parse-async</code>.</li>
+<li>Скопировать <code>task_id</code>.</li>
+<li>Выполнить <code>GET /parser/tasks/{task_id}</code>.</li>
+<li>Проверить, что задача перешла в состояние <code>SUCCESS</code>.</li>
+</ol>
+<h2 id="_8">Вывод<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>В третьей лабораторной работе FastAPI-приложение, база данных, парсер, Redis и Celery worker были упакованы в Docker Compose. Основное приложение может вызывать парсер напрямую по HTTP или ставить задачу парсинга в очередь. Все сервисы используют одну общую PostgreSQL-базу данных, что соответствует замечанию о недопустимости создания отдельной базы для каждого микросервиса.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

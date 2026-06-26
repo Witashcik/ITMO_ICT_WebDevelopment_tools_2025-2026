@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Дмитрий Люсин">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Лабораторная работа 2 - Отчёт по лабораторным работам по веб-разработке</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="..">Отчёт по лабораторным работам по веб-разработке</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../lab1/" class="nav-link">Лабораторная работа 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Лабораторная работа 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../lab3/" class="nav-link">Лабораторная работа 3</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../run/" class="nav-link">Инструкция запуска</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../check/" class="nav-link">Проверка и защита</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../lab1/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../lab3/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/USERNAME/REPOSITORY/edit/master/docs/lab2.md" class="nav-link">Edit on GitHub Repository
+                                    </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#2" class="nav-link">Лабораторная работа 2. Потоки. Процессы. Асинхронность</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">Цель работы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">Использованные подходы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Структура проекта</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#1-1-10000000000000" class="nav-link">Задача 1. Сумма чисел от 1 до 10000000000000</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-" class="nav-link">Задача 2. Параллельный парсинг веб-страниц</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_7" class="nav-link">Вывод</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="2">Лабораторная работа 2. Потоки. Процессы. Асинхронность<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
+<h2 id="_1">Цель работы<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Цель лабораторной работы — изучить отличия между потоками, процессами и асинхронным программированием в Python, а также сравнить их применение на вычислительных и сетевых задачах.</p>
+<h2 id="_2">Использованные подходы<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Подход</th>
+<th>Модуль/технология</th>
+<th>Особенность</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>threading</td>
+<td><code>threading</code></td>
+<td>параллельное выполнение потоков внутри одного процесса</td>
+</tr>
+<tr>
+<td>multiprocessing</td>
+<td><code>multiprocessing</code></td>
+<td>запуск нескольких процессов, обход GIL для CPU-bound задач</td>
+</tr>
+<tr>
+<td>async</td>
+<td><code>asyncio</code>, <code>aiohttp</code></td>
+<td>асинхронное выполнение I/O-bound задач без создания отдельных потоков</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">Структура проекта<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<pre><code class="language-text">lab2-concurrency-async/
+├── task1_sum/
+│   ├── common_sum.py
+│   ├── sum_threading.py
+│   ├── sum_multiprocessing.py
+│   ├── sum_async.py
+│   └── run_all_sum.py
+├── task2_parser/
+│   ├── common_parser.py
+│   ├── parse_threading.py
+│   ├── parse_multiprocessing.py
+│   ├── parse_async.py
+│   └── run_all_parser.py
+├── run_all_lab2.py
+├── requirements.txt
+└── .env.example
+</code></pre>
+<h2 id="1-1-10000000000000">Задача 1. Сумма чисел от 1 до 10000000000000<a class="headerlink" href="#1-1-10000000000000" title="Permanent link">&para;</a></h2>
+<p>В первой задаче были написаны три программы, использующие <code>threading</code>, <code>multiprocessing</code> и <code>asyncio</code>. Каждая программа разбивает общий диапазон чисел на несколько поддиапазонов и считает частичные суммы.</p>
+<p>Чтобы программа не выполнялась слишком долго, сумма внутри каждого диапазона считается по формуле арифметической прогрессии. При этом требование разделения задачи на несколько параллельных частей сохраняется.</p>
+<p>Итоговая сумма:</p>
+<pre><code class="language-text">50000000000005000000000000
+</code></pre>
+<p>Проверка корректности во всех трёх вариантах показала:</p>
+<pre><code class="language-text">Результат корректный: True
+</code></pre>
+<h3 id="1">Результаты выполнения задачи 1<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Подход</th>
+<th style="text-align: right;">Количество задач</th>
+<th style="text-align: right;">Время выполнения</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>threading</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.001214 сек.</td>
+</tr>
+<tr>
+<td>multiprocessing</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.161984 сек.</td>
+</tr>
+<tr>
+<td>asyncio</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.000103 сек.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">Комментарий по результатам<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>В данной реализации быстрее всего выполнился вариант с <code>asyncio</code>, потому что каждая подзадача выполняет очень короткое вычисление по формуле, а накладные расходы минимальны. Вариант <code>multiprocessing</code> оказался медленнее из-за стоимости создания процессов, особенно заметной на Windows. Для реальных тяжёлых CPU-bound вычислений процессы обычно лучше потоков, но в этой задаче вычисление было оптимизировано формулой.</p>
+<h2 id="2-">Задача 2. Параллельный парсинг веб-страниц<a class="headerlink" href="#2-" title="Permanent link">&para;</a></h2>
+<p>Во второй задаче были реализованы три программы для параллельной загрузки веб-страниц, извлечения заголовков и сохранения данных в базу данных из первой лабораторной работы.</p>
+<p>Использованные URL:</p>
+<pre><code class="language-text">https://example.com/
+https://www.python.org/
+https://fastapi.tiangolo.com/
+https://www.postgresql.org/
+https://docs.sqlalchemy.org/
+https://www.djangoproject.com/
+</code></pre>
+<p>Данные сохраняются в существующую таблицу <code>tag</code>, так как проект первой лабораторной является тайм-менеджером, а заголовки страниц можно использовать как автоматически собранные теги/источники.</p>
+<h3 id="2_1">Результаты выполнения задачи 2<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Подход</th>
+<th style="text-align: right;">Количество URL</th>
+<th style="text-align: right;">Время выполнения</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>threading</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1.350174 сек.</td>
+</tr>
+<tr>
+<td>multiprocessing</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1.659131 сек.</td>
+</tr>
+<tr>
+<td>asyncio + aiohttp</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1.458582 сек.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">Полученные заголовки<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Заголовок</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>https://example.com/</code></td>
+<td>Example Domain</td>
+</tr>
+<tr>
+<td><code>https://www.python.org/</code></td>
+<td>Welcome to Python.org</td>
+</tr>
+<tr>
+<td><code>https://fastapi.tiangolo.com/</code></td>
+<td>FastAPI - FastAPI</td>
+</tr>
+<tr>
+<td><code>https://www.postgresql.org/</code></td>
+<td>PostgreSQL: The world's most advanced open source database</td>
+</tr>
+<tr>
+<td><code>https://docs.sqlalchemy.org/</code></td>
+<td>SQLAlchemy Documentation — SQLAlchemy 2.0 Documentation</td>
+</tr>
+<tr>
+<td><code>https://www.djangoproject.com/</code></td>
+<td>The web framework for perfectionists with deadlines | Django</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">Комментарий по результатам<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>В задаче парсинга основное время занимает ожидание сетевых запросов и запись в базу данных. Поэтому <code>threading</code> и <code>asyncio</code> хорошо подходят для такой задачи. В конкретном запуске <code>threading</code> оказался немного быстрее, но разница небольшая и зависит от скорости ответа сайтов и состояния сети. <code>multiprocessing</code> показал большее время из-за накладных расходов на создание процессов.</p>
+<h2 id="_7">Вывод<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>В лабораторной работе были реализованы и сравнены три подхода к параллельному и асинхронному выполнению задач. Для коротких вычислений создание процессов может быть неоправданным. Для сетевого парсинга эффективны потоки и асинхронный подход, так как они позволяют не блокировать выполнение во время ожидания ответа от внешних сайтов.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
