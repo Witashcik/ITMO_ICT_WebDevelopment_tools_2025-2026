@@ -1,0 +1,77 @@
+services:
+  db:
+    image: postgres:16
+    container_name: lab3_time_manager_db
+    environment:
+      POSTGRES_DB: time_manager_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - lab3_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d time_manager_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7
+    container_name: lab3_redis
+    ports:
+      - "6380:6379"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    container_name: lab3_time_manager_api
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/time_manager_db
+      SECRET_KEY: change-this-secret-key
+      ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 60
+      PARSER_SERVICE_URL: http://parser_service:8001
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/1
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      parser_service:
+        condition: service_started
+
+  parser_service:
+    build:
+      context: .
+      dockerfile: Dockerfile.parser
+    container_name: lab3_parser_service
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/time_manager_db
+    ports:
+      - "8001:8001"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    container_name: lab3_celery_worker
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/time_manager_db
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/1
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+volumes:
+  lab3_postgres_data:
