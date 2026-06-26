@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: time-manager-postgres-pr2
+    environment:
+      POSTGRES_DB: time_manager_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data_pr2:/var/lib/postgresql/data
+
+volumes:
+  postgres_data_pr2:
