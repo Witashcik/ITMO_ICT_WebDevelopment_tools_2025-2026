@@ -1,0 +1,6 @@
+requests
+beautifulsoup4
+aiohttp
+asyncpg
+psycopg2-binary
+python-dotenv
